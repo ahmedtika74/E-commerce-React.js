@@ -2,6 +2,7 @@ import { ShoppingCartIcon, Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import SearchInput from "../ui/SearchInput";
 
 export default function Navbar() {
@@ -61,10 +62,12 @@ export default function Navbar() {
         <div className="flex gap-3">
           {/* Cart */}
           <div className="relative">
-            <ShoppingCartIcon className="h-6 w-6 cursor-pointer text-slate-300 transition-colors hover:text-indigo-400" />
-            <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-600 text-[10px] text-white">
-              {totalQuantity}
-            </span>
+            <Link to={"/cart"}>
+              <ShoppingCartIcon className="h-6 w-6 cursor-pointer text-slate-300 transition-colors hover:text-indigo-400" />
+              <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-600 text-[10px] text-white">
+                {totalQuantity}
+              </span>
+            </Link>
           </div>
           {/* Menu */}
           {isOpen ? (
