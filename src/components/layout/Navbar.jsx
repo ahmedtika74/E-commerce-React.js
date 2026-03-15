@@ -1,10 +1,13 @@
 import { ShoppingCartIcon, Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import SearchInput from "../ui/SearchInput";
 
 export default function Navbar() {
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md">
       <div className="container mx-auto flex h-[10vh] items-center justify-between px-4 md:h-16">
@@ -60,7 +63,7 @@ export default function Navbar() {
           <div className="relative">
             <ShoppingCartIcon className="h-6 w-6 cursor-pointer text-slate-300 transition-colors hover:text-indigo-400" />
             <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-600 text-[10px] text-white">
-              0
+              {totalQuantity}
             </span>
           </div>
           {/* Menu */}
