@@ -15,7 +15,7 @@ export default function Navbar() {
 
         {/* NavLinks */}
         <ul
-          className={`absolute ${isOpen ? "visible max-h-screen opacity-100" : "invisible h-0 opacity-0"} visible top-[10vh] left-0 flex w-full flex-col items-start gap-5 overflow-hidden bg-slate-900/80 p-5 opacity-100 backdrop-blur-md transition-all duration-300 ease-in-out md:static md:flex md:h-fit md:w-fit md:translate-x-0 md:flex-row md:items-center md:bg-transparent md:p-0`}
+          className={`absolute ${isOpen ? "visible max-h-screen p-5 opacity-100" : "invisible h-0 opacity-0"} visible top-[10vh] left-0 flex w-full flex-col items-start gap-5 overflow-hidden bg-slate-900/80 pl-5 opacity-100 backdrop-blur-md transition-all duration-300 ease-in-out md:static md:flex md:h-fit md:w-fit md:translate-x-0 md:flex-row md:items-center md:bg-transparent md:p-0`}
         >
           <li>
             <NavLink

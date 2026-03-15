@@ -1,4 +1,9 @@
+import { useDispatch } from "react-redux";
+import { addItem } from "../../features/cart/cartSlice";
+
 export default function ProductCard({ data }) {
+  const dispatch = useDispatch();
+
   return (
     <div className="relative w-full overflow-hidden rounded-xl bg-slate-800/50">
       <div className="aspect-square overflow-hidden">
@@ -16,7 +21,12 @@ export default function ProductCard({ data }) {
           </span>
         </div>
         <p className="my-3 line-clamp-2 text-sm">{data.description}</p>
-        <button className="mt-2 w-full cursor-pointer rounded-lg bg-indigo-600 py-2 font-semibold transition hover:bg-indigo-700">
+        <button
+          onClick={() => {
+            dispatch(addItem(data));
+          }}
+          className="mt-2 w-full cursor-pointer rounded-lg bg-indigo-600 py-2 font-semibold transition hover:bg-indigo-700"
+        >
           Add to cart
         </button>
       </div>
