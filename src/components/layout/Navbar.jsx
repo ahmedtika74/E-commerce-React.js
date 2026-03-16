@@ -16,7 +16,6 @@ export default function Navbar() {
         <h1 className="cursor-pointer text-2xl font-bold tracking-tighter text-white">
           TECH <span className="text-indigo-500">STORE</span>
         </h1>
-
         {/* NavLinks */}
         <ul
           className={`absolute ${isOpen ? "visible max-h-screen p-5 opacity-100" : "invisible h-0 opacity-0"} visible top-[10vh] left-0 flex w-full flex-col items-start gap-5 overflow-hidden bg-slate-900/80 pl-5 opacity-100 backdrop-blur-md transition-all duration-300 ease-in-out md:static md:flex md:h-fit md:w-fit md:translate-x-0 md:flex-row md:items-center md:bg-transparent md:p-0 md:backdrop-blur-none`}
@@ -53,12 +52,7 @@ export default function Navbar() {
           </li>
         </ul>
 
-        {/* Search */}
-        <div className="hidden rounded-lg border border-slate-700 bg-slate-800/50 md:flex">
-          <SearchInput />
-        </div>
-
-        {/* right side */}
+        {/* Icons */}
         <div className="flex gap-3">
           {/* Cart */}
           <div className="relative">

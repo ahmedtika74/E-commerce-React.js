@@ -1,12 +1,28 @@
 import { useSelector } from "react-redux";
 import ProductCart from "../components/ui/ProductCart";
+import { Link } from "react-router-dom";
+import { ShoppingCartIcon } from "lucide-react";
 
 export default function Cart() {
   const { items: cartProducts, totalAmount } = useSelector(
     (state) => state.cart,
   );
 
-  return (
+  return cartProducts.length === 0 ? (
+    <div className="flex h-[90vh] flex-col items-center justify-center">
+      <ShoppingCartIcon className="mb-4 h-25 w-25 animate-pulse" />
+      <h2 className="text-2xl font-bold text-white">Your cart is empty</h2>
+      <p className="my-4 text-slate-500">
+        Looks like you haven't added anything yet.
+      </p>
+      <Link
+        to="/products"
+        className="rounded-lg bg-indigo-600 px-6 py-2 font-bold transition hover:bg-indigo-700"
+      >
+        Go Shopping
+      </Link>
+    </div>
+  ) : (
     <div className="container mx-auto p-4">
       <h1 className="mb-6 text-2xl font-bold">Shopping Cart</h1>
       <div className="flex flex-col gap-8 lg:flex-row">
