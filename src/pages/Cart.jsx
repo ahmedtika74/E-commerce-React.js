@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
-import ProductCart from "../components/ui/ProductCart";
 import { Link } from "react-router-dom";
 import { ShoppingCartIcon } from "lucide-react";
+import ProductCart from "../components/ui/ProductCart";
+import ActionButton from "../components/ui/ActionButton";
 
 export default function Cart() {
   const { items: cartProducts, totalAmount } = useSelector(
@@ -40,7 +41,7 @@ export default function Cart() {
             {/* Subtotal */}
             <div className="flex justify-between">
               <span className="text-slate-400">Subtotal</span>
-              <span>{totalAmount}$</span>
+              <span>{totalAmount.toFixed(2)}$</span>
             </div>
             {/* Shipping */}
             <div className="flex justify-between">
@@ -54,15 +55,14 @@ export default function Cart() {
             </div>
           </div>
           {/* Total */}
-          <div className="mt-4 flex justify-between text-lg font-bold">
+          <div className="mt-4 mb-6 flex justify-between text-lg font-bold">
             <span>Total</span>
             <span className="text-indigo-400">
               {(totalAmount + 10 + totalAmount * 0.05).toFixed(2)}$
             </span>
           </div>
-          <button className="mt-6 w-full cursor-pointer rounded-lg bg-indigo-600 py-3 font-bold transition hover:bg-indigo-700">
-            Checkout
-          </button>
+
+          <ActionButton name={"Checkout"} />
         </div>
       </div>
     </div>
