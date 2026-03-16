@@ -1,15 +1,47 @@
+import {
+  addItem,
+  reduceQuantity,
+  removeItem,
+} from "../../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { Trash } from "lucide-react";
+
 export default function ProductCart({ data }) {
+  const dispatch = useDispatch();
+
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-slate-700 bg-slate-800/40 p-4">
-      <img src="URL" className="h-20 w-20 rounded-lg object-cover" />
+    <div className="flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/40 p-4 text-sm md:text-base">
+      <img
+        src={data.image}
+        className="h-16 w-16 rounded-lg object-cover md:h-20 md:w-20"
+      />
       <div className="flex-1">
-        <h3 className="font-medium">Product Name</h3>
-        <p className="font-bold text-indigo-400">$30</p>
+        <h3 className="font-medium">{data.name}</h3>
+        <p className="font-bold text-indigo-400">{data.price}$</p>
       </div>
-      <div className="flex items-center gap-3">
-        <button className="cursor-pointer rounded bg-slate-700 px-2">-</button>
-        <span>1</span>
-        <button className="cursor-pointer rounded bg-slate-700 px-2">+</button>
+      <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center gap-4 rounded-full border border-slate-700 bg-slate-900/50 p-1 px-2">
+          <button
+            onClick={() => dispatch(reduceQuantity(data))}
+            className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-slate-700 transition-all hover:bg-red-500/20 hover:text-red-500 md:h-8 md:w-8"
+          >
+            -
+          </button>
+
+          <span className="text-center font-bold md:text-lg">
+            {data.quantity}
+          </span>
+
+          <button
+            onClick={() => dispatch(addItem(data))}
+            className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-slate-700 transition-all hover:bg-green-500/20 hover:text-green-400 md:h-8 md:w-8"
+          >
+            +
+          </button>
+        </div>
+        <div className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-slate-700 transition-all hover:bg-red-500/20 hover:text-red-500 md:h-8 md:w-8">
+          <Trash onClick={() => dispatch(removeItem(data))} />
+        </div>
       </div>
     </div>
   );

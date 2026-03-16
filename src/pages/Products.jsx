@@ -33,7 +33,7 @@ export default function Products() {
   ) : (
     // Display the data from API
     <>
-      <div className="flex flex-col items-center justify-center p-3">
+      <div className="container mx-auto flex flex-col items-center justify-center px-4 py-3">
         <h2 className="text-2xl font-bold md:text-4xl">Our Products</h2>
         <div className="my-2 w-3/4 rounded-lg border border-slate-700 bg-slate-800/50 md:my-5 md:w-1/2">
           <SearchInput />
