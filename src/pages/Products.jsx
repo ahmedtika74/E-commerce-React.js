@@ -44,7 +44,11 @@ export default function Products() {
         <h2 className="text-2xl font-bold md:text-4xl">Our Products</h2>
         {/* Search */}
         <div className="my-2 w-3/4 rounded-lg border border-slate-700 bg-slate-800/50 md:my-5 md:w-1/2">
-          <SearchInput search={searchQ} setSearch={setSearchQ} />
+          <SearchInput
+            search={searchQ}
+            setSearch={setSearchQ}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
         {/* Products */}
         <div className="grid grid-cols-2 gap-4 p-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
