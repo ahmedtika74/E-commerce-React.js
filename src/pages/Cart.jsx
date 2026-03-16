@@ -62,7 +62,12 @@ export default function Cart() {
             </span>
           </div>
 
-          <ActionButton name={"Checkout"} />
+          <ActionButton
+            name={"Checkout"}
+            onClick={() => {
+              alert("Checkout Try!");
+            }}
+          />
         </div>
       </div>
     </div>
