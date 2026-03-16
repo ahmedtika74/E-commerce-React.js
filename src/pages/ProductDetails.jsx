@@ -36,7 +36,7 @@ export default function ProductDetails() {
         <div className="overflow-hidden rounded-3xl bg-slate-800/40 lg:w-1/3">
           <img
             src={currentItem.image}
-            alt="test"
+            alt={currentItem.name}
             className="h-full w-full object-cover"
           />
         </div>

@@ -62,14 +62,20 @@ export default function Products() {
         </div>
         {/* Products */}
         <div className="grid grid-cols-2 gap-4 p-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {products}
+          {products.length ? (
+            products
+          ) : (
+            <p className="col-span-full text-center text-slate-400">
+              No products found
+            </p>
+          )}
         </div>
       </div>
       {/* Pagination Buttons */}
       <div className="mt-8 flex justify-center gap-2">
         <button
           disabled={currentPage === 1}
-          onClick={() => setCurrentPage((next) => next - 1)}
+          onClick={() => paginate(currentPage - 1)}
           className="rounded-lg bg-slate-800 px-4 py-2 disabled:opacity-50"
         >
           &lt;
@@ -91,7 +97,7 @@ export default function Products() {
         ))}
         <button
           disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage((prev) => prev + 1)}
+          onClick={() => paginate(currentPage + 1)}
           className="rounded-lg bg-slate-800 px-4 py-2 disabled:opacity-50"
         >
           &gt;

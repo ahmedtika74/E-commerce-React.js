@@ -5,8 +5,10 @@ import cartReducer from "../features/cart/cartSlice";
 const localStorageData = (store) => (next) => (action) => {
   const result = next(action);
 
-  const state = store.getState();
-  localStorage.setItem("cart", JSON.stringify(state.cart));
+  if (action.type.startsWith("cart/")) {
+    const state = store.getState();
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+  }
   return result;
 };
 

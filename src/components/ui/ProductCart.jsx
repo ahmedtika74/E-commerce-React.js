@@ -13,6 +13,7 @@ export default function ProductCart({ data }) {
     <div className="flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/40 p-4 text-sm md:text-base">
       <img
         src={data.image}
+        alt={data.name}
         className="h-16 w-16 rounded-lg object-cover md:h-20 md:w-20"
       />
       <div className="flex-1">
