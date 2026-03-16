@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 export default function ProductCard({ data }) {
   return (
     <div className="flex flex-col rounded-xl bg-slate-800/50">
-      <Link to={`/products/${data.id}`}>
+      <Link
+        onClick={() => {
+          window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
+        }}
+        to={`/products/${data.id}`}
+      >
         <div className="relative flex h-full w-full cursor-pointer flex-col overflow-hidden">
           <div className="aspect-square overflow-hidden">
             <img

@@ -19,32 +19,35 @@ export default function Navbar() {
         <ul
           className={`absolute ${isOpen ? "visible max-h-screen p-5 opacity-100" : "invisible h-0 opacity-0"} visible top-[10vh] left-0 flex w-full flex-col items-start gap-5 overflow-hidden bg-slate-900/80 pl-5 opacity-100 backdrop-blur-md transition-all duration-300 ease-in-out md:static md:flex md:h-fit md:w-fit md:translate-x-0 md:flex-row md:items-center md:bg-transparent md:p-0 md:backdrop-blur-none`}
         >
-          <li>
+          <li className="w-full">
             <NavLink
               onClick={() => {
                 setIsOpen(false);
               }}
               to={"/"}
+              className="block w-full"
             >
               Home
             </NavLink>
           </li>
-          <li>
+          <li className="w-full">
             <NavLink
               onClick={() => {
                 setIsOpen(false);
               }}
               to={"/products"}
+              className="block w-full"
             >
               Products
             </NavLink>
           </li>
-          <li>
+          <li className="w-full">
             <NavLink
               onClick={() => {
                 setIsOpen(false);
               }}
               to={"/categories"}
+              className="block w-full"
             >
               Categories
             </NavLink>
@@ -55,7 +58,12 @@ export default function Navbar() {
         <div className="flex gap-3">
           {/* Cart */}
           <div className="relative">
-            <Link to={"/cart"}>
+            <Link
+              onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              }}
+              to={"/cart"}
+            >
               <ShoppingCartIcon className="h-6 w-6 cursor-pointer text-slate-300 transition-colors hover:text-indigo-400" />
               <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-600 text-[10px] text-white">
                 {totalQuantity}
