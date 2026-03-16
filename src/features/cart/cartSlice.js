@@ -50,7 +50,7 @@ export const cartSlice = createSlice({
       state.totalQuantity -= cartItem.quantity;
       state.totalAmount -= cartItem.quantity * cartItem.price;
 
-      state.items = state.items.filter((item) => item.id != cartItem.id);
+      state.items = state.items.filter((item) => item.id !== cartItem.id);
     },
   },
 });

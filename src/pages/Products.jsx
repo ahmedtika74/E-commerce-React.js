@@ -4,7 +4,7 @@ import ProductCard from "../components/ui/ProductCard";
 import SearchInput from "../components/ui/SearchInput";
 
 export default function Products() {
-  const { items, status } = useSelector((state) => state.products);
+  const { items, status, error } = useSelector((state) => state.products);
 
   // State for filter
   const [searchQ, setSearchQ] = useState("");
@@ -34,9 +34,7 @@ export default function Products() {
     <div className="flex h-screen items-center justify-center">Loading...</div>
   ) : status === "rejected" ? (
     // Failed to fetch data from API
-    <div className="flex h-screen items-center justify-center">
-      Failed to load products.
-    </div>
+    <div className="flex h-screen items-center justify-center">{error}</div>
   ) : (
     // Display the data from API
     <>

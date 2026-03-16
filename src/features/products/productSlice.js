@@ -14,6 +14,7 @@ export const productSlice = createSlice({
   initialState: {
     items: [],
     status: "idle",
+    error: "",
   },
   reducers: {},
   extraReducers(builder) {
@@ -25,8 +26,9 @@ export const productSlice = createSlice({
         state.status = "succeeded";
         state.items = action.payload;
       })
-      .addCase(fetchAPI.rejected, (state) => {
-        state.status = "failed";
+      .addCase(fetchAPI.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = `failed to fetch, ${action.error.message}`;
       });
   },
 });

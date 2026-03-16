@@ -53,7 +53,7 @@ export default function ProductDetails() {
           <p className="mt-5 flex-1 text-justify leading-relaxed text-slate-400">
             {currentItem.description}
           </p>
-          <div className="mt-auto w-full self-end md:w-[30%] lg:w-[20%]">
+          <div className="mt-5 w-full self-end md:w-[30%] lg:mt-auto lg:w-[20%]">
             <ActionButton name={"Add to cart"} data={currentItem} />
           </div>
         </div>

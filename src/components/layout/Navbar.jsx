@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import SearchInput from "../ui/SearchInput";
 
 export default function Navbar() {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
