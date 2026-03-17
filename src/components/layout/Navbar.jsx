@@ -22,6 +22,7 @@ export default function Navbar() {
           <li className="w-full">
             <NavLink
               onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                 setIsOpen(false);
               }}
               to={"/"}
@@ -33,6 +34,7 @@ export default function Navbar() {
           <li className="w-full">
             <NavLink
               onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                 setIsOpen(false);
               }}
               to={"/products"}
@@ -44,6 +46,7 @@ export default function Navbar() {
           <li className="w-full">
             <NavLink
               onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                 setIsOpen(false);
               }}
               to={"/categories"}
