@@ -7,8 +7,10 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Products from "./pages/Products";
+import Categories from "./pages/Categories";
 import ProductDetails from "./pages/ProductDetails";
-import NotFound from "./pages/NotFounad";
+import NotFound from "./pages/NotFound";
+import Footer from "./components/layout/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +26,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

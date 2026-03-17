@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ProductCard({ data }) {
   return (
-    <div className="flex flex-col rounded-xl bg-slate-800/50">
+    <div className="flex flex-col overflow-hidden rounded-xl bg-slate-800/50">
       <Link
         onClick={() => {
           window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
