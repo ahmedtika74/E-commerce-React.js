@@ -21,6 +21,9 @@ export default function ProductCard({ data }) {
           <div className="flex flex-1 flex-col p-3">
             <div className="flex items-center justify-between">
               <p className="line-clamp-1 text-base font-medium">{data.name}</p>
+              <p className="text-[10px] font-medium tracking-[0.2em] text-indigo-500 uppercase">
+                {data.category}
+              </p>
               <span className="absolute top-2 left-2 rounded-full bg-black/50 px-3 font-bold text-white backdrop-blur-md">
                 {data.price}$
               </span>
