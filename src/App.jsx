@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
+import NotFound from "./pages/NotFounad";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,14 +25,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
-        <Route
-          path="*"
-          element={
-            <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] text-7xl font-black text-red-500 underline underline-offset-10">
-              404 Not Found
-            </div>
-          }
-        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
