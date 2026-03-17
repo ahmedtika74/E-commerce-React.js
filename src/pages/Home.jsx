@@ -1,9 +1,10 @@
 import ActionButton from "../components/ui/ActionButton";
 import ProductCard from "../components/ui/ProductCard";
+import HeroStats from "../components/ui/HeroStats";
+import FeatureCard from "../components/ui/FeatureCard";
 import { useSelector } from "react-redux";
 import { Truck, ShieldCheck, Award } from "lucide-react";
 import { Link } from "react-router-dom";
-import HeroStats from "../components/ui/HeroStats";
 
 export default function Home() {
   const { items } = useSelector((state) => state.products);
@@ -99,45 +100,21 @@ export default function Home() {
         <div className="pt-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              <div className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/50 p-8 shadow-2xl shadow-black/20 transition-all duration-300 hover:border-indigo-500/50 hover:bg-slate-900">
-                <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-indigo-500/5 blur-2xl transition-all duration-500 group-hover:bg-indigo-500/10"></div>
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-800 text-indigo-500 transition-all duration-300 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white">
-                  <Truck size={32} />
-                </div>
-                <h3 className="mb-3 text-xl font-bold tracking-tight text-white">
-                  Fast Global Shipping
-                </h3>
-                <p className="text-sm leading-relaxed text-slate-400">
-                  Free delivery on all orders over $150. Tracked and secured
-                  worldwide.
-                </p>
-              </div>
-              <div className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/50 p-8 shadow-2xl shadow-black/20 transition-all duration-300 hover:border-indigo-500/50 hover:bg-slate-900">
-                <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-indigo-500/5 blur-2xl transition-all duration-500 group-hover:bg-indigo-500/10"></div>
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-800 text-indigo-500 transition-all duration-300 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white">
-                  <ShieldCheck size={32} />
-                </div>
-                <h3 className="mb-3 text-xl font-bold tracking-tight text-white">
-                  Secure Payment
-                </h3>
-                <p className="text-sm leading-relaxed text-slate-400">
-                  Your transactions are protected by industry-leading encryption
-                  technology.
-                </p>
-              </div>
-              <div className="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/50 p-8 shadow-2xl shadow-black/20 transition-all duration-300 hover:border-indigo-500/50 hover:bg-slate-900">
-                <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-indigo-500/5 blur-2xl transition-all duration-500 group-hover:bg-indigo-500/10"></div>
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-800 text-indigo-500 transition-all duration-300 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white">
-                  <Award size={32} />
-                </div>
-                <h3 className="mb-3 text-xl font-bold tracking-tight text-white">
-                  Premium Quality
-                </h3>
-                <p className="text-sm leading-relaxed text-slate-400">
-                  We use only the finest sustainable materials for our curated
-                  collections.
-                </p>
-              </div>
+              <FeatureCard
+                icon={<Truck size={32} />}
+                title="Fast Global Shipping"
+                description="Free delivery on all orders over $150. Tracked and secured worldwide."
+              />
+              <FeatureCard
+                icon={<ShieldCheck size={32} />}
+                title="Secure Payment"
+                description="Your transactions are protected by industry-leading encryption technology."
+              />
+              <FeatureCard
+                icon={<Award size={32} />}
+                title="Premium Quality"
+                description="We use only the finest sustainable materials for our curated collections."
+              />
             </div>
           </div>
         </div>
