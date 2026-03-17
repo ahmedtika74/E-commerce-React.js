@@ -1,13 +1,18 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ShoppingCartIcon } from "lucide-react";
 import ProductCart from "../components/ui/ProductCart";
 import ActionButton from "../components/ui/ActionButton";
+import { toggleModal } from "../features/cart/cartSlice";
+import CheckoutModal from "../components/layout/CheckoutModal";
 
 export default function Cart() {
-  const { items: cartProducts, totalAmount } = useSelector(
-    (state) => state.cart,
-  );
+  const {
+    items: cartProducts,
+    totalAmount,
+    showModal,
+  } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   return cartProducts.length === 0 ? (
     <div className="flex h-[90vh] flex-col items-center justify-center">
@@ -65,11 +70,12 @@ export default function Cart() {
           <ActionButton
             name={"Checkout"}
             onClick={() => {
-              alert("Checkout Try!");
+              dispatch(toggleModal());
             }}
           />
         </div>
       </div>
+      {showModal && <CheckoutModal />}
     </div>
   );
 }

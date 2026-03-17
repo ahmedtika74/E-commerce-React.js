@@ -5,16 +5,18 @@ const loadCart = () => {
     const localCart = localStorage.getItem("cart");
     return localCart
       ? JSON.parse(localCart)
-      : { items: [], totalQuantity: 0, totalAmount: 0 };
+      : { items: [], totalQuantity: 0, totalAmount: 0, showModal: false };
   } catch (error) {
     console.log(error);
-    return { items: [], totalQuantity: 0, totalAmount: 0 };
+    return { items: [], totalQuantity: 0, totalAmount: 0, showModal: false };
   }
 };
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState: loadCart(),
+  initialState: {
+    ...loadCart(),
+  },
   reducers: {
     addItem: (state, action) => {
       const newItem = action.payload;
@@ -60,8 +62,23 @@ export const cartSlice = createSlice({
 
       state.items = state.items.filter((item) => item.id !== cartItem.id);
     },
+    toggleModal: (state) => {
+      state.showModal = !state.showModal;
+    },
+    confirmPayment: (state) => {
+      state.items = [];
+      state.totalQuantity = 0;
+      state.totalAmount = 0;
+      state.showModal = false;
+    },
   },
 });
 
-export const { addItem, reduceQuantity, removeItem } = cartSlice.actions;
+export const {
+  addItem,
+  reduceQuantity,
+  removeItem,
+  toggleModal,
+  confirmPayment,
+} = cartSlice.actions;
 export default cartSlice.reducer;

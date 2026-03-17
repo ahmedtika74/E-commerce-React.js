@@ -12,6 +12,7 @@ export default function ActionButton({ name, data, onClick }) {
   };
   return (
     <button
+      type="button"
       onClick={handleClick}
       className="mt-auto w-full cursor-pointer rounded-lg bg-indigo-600 py-2 font-semibold transition hover:bg-indigo-700"
     >

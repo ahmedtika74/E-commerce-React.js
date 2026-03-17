@@ -40,8 +40,11 @@ export default function ProductCart({ data }) {
             +
           </button>
         </div>
-        <div className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-slate-700 transition-all hover:bg-red-500/20 hover:text-red-500 md:h-8 md:w-8">
-          <Trash onClick={() => dispatch(removeItem(data))} />
+        <div
+          className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-slate-700 transition-all hover:bg-red-500/20 hover:text-red-500 md:h-8 md:w-8"
+          onClick={() => dispatch(removeItem(data))}
+        >
+          <Trash />
         </div>
       </div>
     </div>
