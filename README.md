@@ -1,16 +1,72 @@
-# React + Vite
+# TECH STORE ⚡
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern e-commerce web application for electronics and tech products, built with React 19 and Redux Toolkit.
 
-Currently, two official plugins are available:
+🔗 **Live Demo**: [tech-store.vercel.app](https://electronics-store-api-two.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- 🏠 **Home Page** — Hero section, featured products, and "Why Choose Us" highlights
+- 🛍️ **Product Browsing** — Search with debounce, pagination, and category filtering
+- 📄 **Product Details** — Full product view with breadcrumb navigation and similar products
+- 🛒 **Shopping Cart** — Add/remove items, quantity controls, order summary with tax & shipping
+- 💳 **Checkout Modal** — Interactive credit card preview with real-time input validation
+- 📂 **Categories** — Browse by category with icon mapping and product counts
+- 🔔 **Toast Notifications** — Feedback on every user action (add to cart, remove, checkout, subscribe)
+- 💾 **Persistent Cart** — Cart data saved to localStorage via Redux middleware
+- 📱 **Fully Responsive** — Mobile-first design with hamburger menu
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+| Technology | Purpose |
+|---|---|
+| React 19 | UI Framework |
+| Redux Toolkit | State Management |
+| React Router v7 | Client-side Routing |
+| Tailwind CSS v4 | Styling |
+| Axios | HTTP Client |
+| Lucide React | Icons |
+| React Hot Toast | Notifications |
+| Vite 8 | Build Tool |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+```bash
+# Clone the repository
+git clone https://github.com/ahmedtika74/E-commerce-React.js.git
+
+# Navigate to the project
+cd E-commerce-React.js
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+The app will be running at `http://localhost:5173`
+
+## Project Structure
+
+```
+src/
+├── api/                  # Axios instance & API config
+├── app/                  # Redux store setup
+├── components/
+│   ├── layout/           # Navbar, Footer, CheckoutModal
+│   └── ui/               # Reusable UI components
+├── features/
+│   ├── cart/              # Cart slice (localStorage persistence)
+│   └── products/         # Product slice (6 async thunks)
+└── pages/                # Route-level page components
+```
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
