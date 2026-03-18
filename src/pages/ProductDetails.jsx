@@ -20,7 +20,7 @@ export default function ProductDetails() {
   ) : (
     <div className="container mx-auto mt-5 px-4 md:mt-10">
       {/* Breadcrumb navigation */}
-      <div className="mb-5 flex items-center justify-start gap-1">
+      <div className="mb-5 flex items-center justify-start gap-1 text-sm md:text-base">
         <Link
           className="text-slate-500 transition-all hover:text-white hover:underline"
           to={"/"}
@@ -42,7 +42,9 @@ export default function ProductDetails() {
           {currentProduct.category}
         </Link>
         &gt;
-        <p className="font-medium text-slate-300">{currentProduct.title}</p>
+        <p className="line-clamp-1 font-medium text-slate-300">
+          {currentProduct.title}
+        </p>
       </div>
       {/* Product Data */}
       <div className="flex flex-col gap-10 lg:flex-row">
