@@ -61,7 +61,7 @@ export default function CategoryDetails() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="grid h-fit grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {visibleProducts.length > 0 ? (
               visibleProducts.map((product) => (
                 <ProductCard key={product.id} data={product} />
