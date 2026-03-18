@@ -1,31 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axiosInstance from "../../api/axiosInstance";
 
+// All Products
 export const fetchAPI = createAsyncThunk(
   "products/All",
   async ({ category = "", limit = 10, page = 1, q = "" } = {}) => {
-    const response = await axios.get(
-      "https://electronics-store-api-two.vercel.app/api/products/search",
-      { params: { category, limit, page, q } },
-    );
+    const response = await axiosInstance.get("/products/search", {
+      params: { category, limit, page, q },
+    });
     return response.data;
   },
 );
-
-export const fetchProduct = createAsyncThunk("products/item/", async (id) => {
-  const response = await axios.get(
-    `https://electronics-store-api-two.vercel.app/api/products/${id}`,
-  );
+// One Product
+export const fetchProduct = createAsyncThunk("products/item", async (id) => {
+  const response = await axiosInstance.get(`/products/${id}`);
   return response.data;
 });
-
+// Featured Products
 export const fetchFeatured = createAsyncThunk(
   "products/featured/",
   async () => {
-    const response = await axios.get(
-      "https://electronics-store-api-two.vercel.app/api/products/featured",
-    );
+    const response = await axiosInstance.get("/products/featured");
+    return response.data;
+  },
+);
+// Category
+export const fetchCategory = createAsyncThunk(
+  "products/category",
+  async (category) => {
+    const response = await axiosInstance.get(`products/category/${category}`);
     return response.data;
   },
 );
@@ -35,9 +38,11 @@ export const productSlice = createSlice({
   initialState: {
     items: [],
     featured: [],
+    category: [],
     listStatus: "idle",
     featuredStatus: "idle",
     productStatus: "idle",
+    categoryStatus: "idle",
     error: "",
     totalProducts: 0,
     totalPages: 0,
@@ -87,6 +92,18 @@ export const productSlice = createSlice({
       })
       .addCase(fetchFeatured.rejected, (state, action) => {
         state.featuredStatus = "rejected";
+        state.error = `failed to fetch, ${action.error.message}`;
+      })
+      // Category
+      .addCase(fetchCategory.pending, (state) => {
+        state.categoryStatus = "loading";
+      })
+      .addCase(fetchCategory.fulfilled, (state, action) => {
+        state.categoryStatus = "succeeded";
+        state.category = action.payload.results;
+      })
+      .addCase(fetchCategory.rejected, (state, action) => {
+        state.categoryStatus = "rejected";
         state.error = `failed to fetch, ${action.error.message}`;
       });
   },
