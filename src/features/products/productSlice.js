@@ -67,7 +67,7 @@ export const productSlice = createSlice({
     featuredError: "",
     productError: "",
     categoryError: "",
-    CategoryNameError: "",
+    categoryNameError: "",
     similarError: "",
     totalProducts: 0,
     totalPages: 0,
@@ -139,7 +139,7 @@ export const productSlice = createSlice({
       // Categories Name
       .addCase(fetchCategoryName.pending, (state) => {
         state.categoryNameStatus = "loading";
-        state.CategoryNameError = "";
+        state.categoryNameError = "";
         state.categories = [];
       })
       .addCase(fetchCategoryName.fulfilled, (state, action) => {
@@ -148,7 +148,7 @@ export const productSlice = createSlice({
       })
       .addCase(fetchCategoryName.rejected, (state, action) => {
         state.categoryNameStatus = "rejected";
-        state.CategoryNameError = action.error.message;
+        state.categoryNameError = action.error.message;
       })
       // Similar Products
       .addCase(fetchSimilar.pending, (state) => {
