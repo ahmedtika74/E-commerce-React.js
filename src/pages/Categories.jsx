@@ -19,7 +19,7 @@ import {
   LayoutGrid,
 } from "lucide-react";
 export default function Categories() {
-  const { categories, CategoryNameStatus } = useSelector(
+  const { categories, categoryNameStatus } = useSelector(
     (state) => state.products,
   );
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ export default function Categories() {
           Find exactly what you need from our wide range of products
         </p>
       </div>
-      {CategoryNameStatus === "loading" ? (
+      {categoryNameStatus === "loading" ? (
         <div className="flex h-[70vh] items-center justify-center">
           Loading Categories...
         </div>
