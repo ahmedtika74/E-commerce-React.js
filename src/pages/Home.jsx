@@ -93,9 +93,15 @@ export default function Home() {
           Our top picks for the season
         </p>
         <div className="mt-7 grid grid-cols-2 gap-6 md:mt-20 md:grid-cols-3 lg:grid-cols-4">
-          {latestModels.map((item) => (
-            <ProductCard key={item.id} data={item} />
-          ))}
+          {!latestModels ? (
+            <div className="flex items-center justify-center">
+              Failed to fetch featured products.
+            </div>
+          ) : (
+            latestModels.map((item) => (
+              <ProductCard key={item.id} data={item} />
+            ))
+          )}
         </div>
       </div>
       {/* Why Us */}
