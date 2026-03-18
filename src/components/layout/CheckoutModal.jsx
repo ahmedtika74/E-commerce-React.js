@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { confirmPayment, toggleModal } from "../../features/cart/cartSlice";
-import CreditCardView from "../ui/CreditCard";
+import CreditCard from "../ui/CreditCard";
 import PaymentForm from "../ui/PaymentForm";
 
 export default function CheckoutModal() {
@@ -14,22 +14,27 @@ export default function CheckoutModal() {
 
   const dispatch = useDispatch();
 
-  const handleName = (e) =>
+  const handleName = useCallback((e) => {
     setPaymentData((prev) => ({ ...prev, name: e.target.value }));
+  }, []);
 
-  const handleNumber = (e, limit) => {
+  const handleNumber = useCallback((e, limit) => {
     const { name, value } = e.target;
     const numericValue = value.replace(/\D/g, "");
-    if (numericValue.length <= limit)
+    if (numericValue.length <= limit) {
       setPaymentData((prev) => ({ ...prev, [name]: numericValue }));
-  };
+    }
+  }, []);
 
-  const handleExpireDate = (e) => {
+  const handleExpireDate = useCallback((e) => {
     let value = e.target.value.replace(/\D/g, "");
-    if (value.length >= 3) value = value.slice(0, 2) + "/" + value.slice(2, 4);
-    if (value.length <= 5)
+    if (value.length >= 3) {
+      value = value.slice(0, 2) + "/" + value.slice(2, 4);
+    }
+    if (value.length <= 5) {
       setPaymentData((prev) => ({ ...prev, expireDate: value }));
-  };
+    }
+  }, []);
 
   const onConfirm = () => {
     const { name, cardNumber, expireDate, cvv } = paymentData;
@@ -59,7 +64,7 @@ export default function CheckoutModal() {
         </h2>
 
         <div className="items-center pb-5 lg:grid lg:grid-cols-2 lg:gap-8">
-          <CreditCardView
+          <CreditCard
             cardNumber={paymentData.cardNumber}
             name={paymentData.name}
             expireDate={paymentData.expireDate}
