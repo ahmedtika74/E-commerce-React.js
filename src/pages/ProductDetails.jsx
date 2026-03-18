@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProduct } from "../features/products/productSlice";
 import { useEffect } from "react";
+import { addItem } from "../features/cart/cartSlice";
 
 export default function ProductDetails() {
   const dispatch = useDispatch();
@@ -61,7 +62,12 @@ export default function ProductDetails() {
             {currentProduct.description}
           </p>
           <div className="mt-5 w-full self-end md:w-[30%] lg:mt-auto lg:w-[20%]">
-            <ActionButton name={"Add to cart"} data={currentProduct} />
+            <ActionButton
+              name={"Add to cart"}
+              onClick={() => {
+                dispatch(addItem(currentProduct));
+              }}
+            />
           </div>
         </div>
       </div>

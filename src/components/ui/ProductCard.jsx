@@ -1,7 +1,11 @@
-import ActionButton from "./ActionButton";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../features/cart/cartSlice";
+import ActionButton from "./ActionButton";
 
 export default function ProductCard({ data }) {
+  const dispatch = useDispatch();
+
   return (
     <div className="flex flex-col overflow-hidden rounded-xl bg-slate-800/50">
       <Link
@@ -33,7 +37,12 @@ export default function ProductCard({ data }) {
         </div>
       </Link>
       <div className="mt-auto p-3">
-        <ActionButton name={"Add to cart"} data={data} />
+        <ActionButton
+          name={"Add to cart"}
+          onClick={() => {
+            dispatch(addItem(data));
+          }}
+        />
       </div>
     </div>
   );
