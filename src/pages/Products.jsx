@@ -83,7 +83,7 @@ export default function Products() {
         <button
           disabled={page === 1}
           onClick={() => paginate(page - 1)}
-          className="rounded-lg bg-slate-800 px-4 py-2 disabled:opacity-50"
+          className="cursor-pointer rounded-lg bg-slate-800 px-4 py-2 disabled:opacity-50"
         >
           &lt;
         </button>
@@ -93,7 +93,7 @@ export default function Products() {
             onClick={() => {
               paginate(number);
             }}
-            className={`rounded-lg border px-4 py-2 transition-all ${
+            className={`cursor-pointer rounded-lg border px-4 py-2 transition-all ${
               page === number
                 ? "border-indigo-600 bg-indigo-600 text-white"
                 : "border-slate-700 bg-slate-800 text-slate-400 hover:bg-slate-700"
@@ -105,7 +105,7 @@ export default function Products() {
         <button
           disabled={page === totalPages}
           onClick={() => paginate(page + 1)}
-          className="rounded-lg bg-slate-800 px-4 py-2 disabled:opacity-50"
+          className="cursor-pointer rounded-lg bg-slate-800 px-4 py-2 disabled:opacity-50"
         >
           &gt;
         </button>
