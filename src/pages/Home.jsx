@@ -15,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(fetchFeatured());
   }, [dispatch]);
-  const latestModels = featured.premiumProducts.slice(0, 4);
+  const latestModels = featured?.premiumProducts?.slice(0, 4) || [];
   return (
     <div>
       {/* Hero */}

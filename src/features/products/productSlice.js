@@ -35,7 +35,9 @@ export const productSlice = createSlice({
   initialState: {
     items: [],
     featured: [],
-    status: "idle",
+    listStatus: "idle",
+    featuredStatus: "idle",
+    productStatus: "idle",
     error: "",
     totalProducts: 0,
     totalPages: 0,
@@ -48,44 +50,44 @@ export const productSlice = createSlice({
     builder
       // All Products
       .addCase(fetchAPI.pending, (state) => {
-        state.status = "loading";
+        state.listStatus = "loading";
         state.items = [];
       })
       .addCase(fetchAPI.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.listStatus = "succeeded";
         state.items = action.payload.results;
         state.totalProducts = action.payload.info.totalProductsFound;
         state.totalPages = action.payload.info.totalPages;
         state.currentPage = action.payload.info.currentPage;
       })
       .addCase(fetchAPI.rejected, (state, action) => {
-        state.status = "rejected";
+        state.listStatus = "rejected";
         state.error = `failed to fetch, ${action.error.message}`;
       })
       // One Product
       .addCase(fetchProduct.pending, (state) => {
-        state.status = "loading";
+        state.productStatus = "loading";
         state.currentProduct = {};
       })
       .addCase(fetchProduct.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.productStatus = "succeeded";
         state.currentProduct = action.payload.product;
       })
       .addCase(fetchProduct.rejected, (state, action) => {
-        state.status = "rejected";
+        state.productStatus = "rejected";
         state.error = `failed to fetch, ${action.error.message}`;
       })
       // Featured Products
       .addCase(fetchFeatured.pending, (state) => {
-        state.status = "loading";
+        state.featuredStatus = "loading";
         state.featured = [];
       })
       .addCase(fetchFeatured.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.featuredStatus = "succeeded";
         state.featured = action.payload.featured;
       })
       .addCase(fetchFeatured.rejected, (state, action) => {
-        state.status = "rejected";
+        state.featuredStatus = "rejected";
         state.error = `failed to fetch, ${action.error.message}`;
       });
   },

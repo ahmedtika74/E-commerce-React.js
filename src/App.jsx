@@ -1,8 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { fetchAPI } from "./features/products/productSlice";
 import Navbar from "./components/layout/Navbar";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
@@ -13,12 +10,6 @@ import NotFound from "./pages/NotFound";
 import Footer from "./components/layout/Footer";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchAPI());
-  }, [dispatch]);
-
   return (
     <div className="mb-5">
       <Navbar />
