@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../features/cart/cartSlice";
 import ActionButton from "./ActionButton";
+import toast from "react-hot-toast";
 
 export default function ProductCard({ data }) {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ export default function ProductCard({ data }) {
           name={"Add to cart"}
           onClick={() => {
             dispatch(addItem(data));
+            toast.success(`${data.title} added to cart! 🛒`);
           }}
         />
       </div>

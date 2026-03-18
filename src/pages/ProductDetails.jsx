@@ -6,6 +6,7 @@ import { fetchProduct, fetchSimilar } from "../features/products/productSlice";
 import { useEffect } from "react";
 import { addItem } from "../features/cart/cartSlice";
 import ProductCard from "../components/ui/ProductCard";
+import toast from "react-hot-toast";
 
 export default function ProductDetails() {
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ export default function ProductDetails() {
               name={"Add to cart"}
               onClick={() => {
                 dispatch(addItem(currentProduct));
+                toast.success(`${currentProduct.title} added to cart! 🛒`);
               }}
             />
           </div>

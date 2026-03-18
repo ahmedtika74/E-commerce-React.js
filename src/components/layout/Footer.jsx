@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Instagram, Twitter, Facebook } from "lucide-react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -88,9 +89,16 @@ export default function Footer() {
                 className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-xs text-white transition-all placeholder:text-slate-600 focus:border-indigo-500 focus:outline-none"
               />
               <button
-                onClick={() => {
+                onClick={(e) => {
                   setEmail("");
-                  alert("Subscribed Successfully!");
+                  e.preventDefault();
+                  if (email === "") {
+                    toast.error("Enter your Email! 📧", {
+                      duration: 2000,
+                    });
+                  } else {
+                    toast.success("Subscribed Successfully! 📧");
+                  }
                 }}
                 className="w-full rounded-lg bg-indigo-600 py-2 text-xs font-bold text-white transition-all hover:bg-indigo-500 active:scale-95"
               >

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { confirmPayment, toggleModal } from "../../features/cart/cartSlice";
 import CreditCard from "../ui/CreditCard";
 import PaymentForm from "../ui/PaymentForm";
+import toast from "react-hot-toast";
 
 export default function CheckoutModal() {
   const [paymentData, setPaymentData] = useState({
@@ -11,8 +12,6 @@ export default function CheckoutModal() {
     expireDate: "",
     cvv: "",
   });
-
-  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
 
@@ -46,11 +45,14 @@ export default function CheckoutModal() {
       expireDate.length < 5 ||
       cvv.length < 3
     ) {
-      setError("Please check your payment details.");
+      toast.error(`Please check your card details!`);
       return;
     }
-    setError("");
     dispatch(confirmPayment());
+    toast.success(`Order placed Successfully!`, {
+      duration: 2000,
+      position: "bottom-right",
+    });
   };
 
   return (
@@ -74,7 +76,6 @@ export default function CheckoutModal() {
           />
 
           <PaymentForm
-            error={error}
             paymentData={paymentData}
             handleName={handleName}
             handleNumber={handleNumber}
