@@ -2,7 +2,7 @@
 
 A modern e-commerce web application for electronics and tech products, built with React 19 and Redux Toolkit.
 
-🔗 **Live Demo**: [tech-store.vercel.app](https://electronics-store-api-two.vercel.app)
+🔗 **Live Demo**: [Link Here]([https://electronics-store-api-two.vercel.app](https://e-commerce-two-livid-63.vercel.app/))
 
 ## Features
 
