@@ -1,4 +1,6 @@
-export default function CreditCardView({ cardNumber, name, expireDate }) {
+import { memo } from "react";
+
+const CreditCard = memo(({ cardNumber, name, expireDate }) => {
   const formattedNumber = cardNumber
     ? cardNumber
         .replace(/\s?/g, "")
@@ -8,8 +10,8 @@ export default function CreditCardView({ cardNumber, name, expireDate }) {
 
   return (
     <div className="relative mx-auto mb-8 aspect-[1.58/1] w-full max-w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-linear-to-br from-slate-800 via-indigo-950 to-slate-900 p-4 text-white shadow-2xl sm:max-w-100 sm:p-6">
-      <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/5 blur-3xl"></div>
-      <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-indigo-500/10 blur-3xl"></div>
+      <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/5 blur-md"></div>
+      <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-indigo-500/10 blur-md"></div>
 
       <div className="mb-8 flex items-start justify-between">
         <div className="relative h-9 w-12 overflow-hidden rounded-md bg-linear-to-br from-yellow-200 via-yellow-400 to-yellow-600 shadow-inner">
@@ -57,4 +59,6 @@ export default function CreditCardView({ cardNumber, name, expireDate }) {
       </div>
     </div>
   );
-}
+});
+
+export default CreditCard;
