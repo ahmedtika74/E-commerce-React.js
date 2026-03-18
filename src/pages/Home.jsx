@@ -2,13 +2,20 @@ import ActionButton from "../components/ui/ActionButton";
 import ProductCard from "../components/ui/ProductCard";
 import HeroStats from "../components/ui/HeroStats";
 import FeatureCard from "../components/ui/FeatureCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Truck, ShieldCheck, Award } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { fetchFeatured } from "../features/products/productSlice";
 
 export default function Home() {
-  const { items } = useSelector((state) => state.products);
-  const featuredItems = items.slice(60, 64);
+  const { featured } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFeatured());
+  }, [dispatch]);
+  const latestModels = featured.premiumProducts.slice(0, 4);
   return (
     <div>
       {/* Hero */}
@@ -56,9 +63,8 @@ export default function Home() {
           <div className="animate-float relative z-10 w-[80%] max-w-100">
             <div className="relative overflow-hidden rounded-4xl border border-white/10 bg-slate-900/40 p-2 shadow-2xl shadow-indigo-500/10 backdrop-blur-2xl">
               <img
-                src={
-                  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070"
-                }
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070"
                 alt="Featured Product"
                 className="h-full w-full rounded-3xl object-cover"
               />
@@ -87,7 +93,7 @@ export default function Home() {
           Our top picks for the season
         </p>
         <div className="mt-7 grid grid-cols-2 gap-6 md:mt-20 md:grid-cols-3 lg:grid-cols-4">
-          {featuredItems.map((item) => (
+          {latestModels.map((item) => (
             <ProductCard key={item.id} data={item} />
           ))}
         </div>

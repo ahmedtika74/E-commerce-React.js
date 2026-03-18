@@ -13,19 +13,17 @@ export default function ProductCard({ data }) {
         <div className="relative flex h-full w-full cursor-pointer flex-col overflow-hidden">
           <div className="aspect-square overflow-hidden">
             <img
-              src={data.image}
-              alt={data.name}
+              loading="lazy"
+              src={data.imageUrl}
+              alt={data.title}
               className="h-full w-full object-cover transition-all duration-300 hover:scale-110 hover:-rotate-6"
             />
           </div>
           <div className="flex flex-1 flex-col p-3">
             <div className="flex items-center justify-between">
-              <p className="line-clamp-1 text-base font-medium">{data.name}</p>
-              <p className="text-[10px] font-medium tracking-[0.2em] text-indigo-500 uppercase">
-                {data.category}
-              </p>
+              <p className="line-clamp-1 text-base font-medium">{data.title}</p>
               <span className="absolute top-2 left-2 rounded-full bg-black/50 px-3 font-bold text-white backdrop-blur-md">
-                {data.price}$
+                ${data.price}
               </span>
             </div>
             <p className="mt-3 line-clamp-2 text-sm text-slate-400">

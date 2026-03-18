@@ -12,12 +12,13 @@ export default function ProductCart({ data }) {
   return (
     <div className="flex items-center justify-between gap-4 rounded-xl border border-slate-700 bg-slate-800/40 p-4 text-sm md:text-base">
       <img
-        src={data.image}
-        alt={data.name}
+        loading="lazy"
+        src={data.imageUrl}
+        alt={data.title}
         className="h-16 w-16 rounded-lg object-cover md:h-20 md:w-20"
       />
       <div className="flex-1">
-        <h3 className="font-medium">{data.name}</h3>
+        <h3 className="font-medium">{data.title}</h3>
         <p className="font-bold text-indigo-400">{data.price}$</p>
       </div>
       <div className="flex items-center justify-center gap-3">
