@@ -90,7 +90,6 @@ export default function Footer() {
               />
               <button
                 onClick={(e) => {
-                  setEmail("");
                   e.preventDefault();
                   if (email === "") {
                     toast.error("Enter your Email! 📧", {
@@ -99,6 +98,7 @@ export default function Footer() {
                   } else {
                     toast.success("Subscribed Successfully! 📧");
                   }
+                  setEmail("");
                 }}
                 className="w-full rounded-lg bg-indigo-600 py-2 text-xs font-bold text-white transition-all hover:bg-indigo-500 active:scale-95"
               >

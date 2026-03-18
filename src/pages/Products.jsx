@@ -6,7 +6,7 @@ import ProductCard from "../components/ui/ProductCard";
 import Pagination from "../components/ui/Pagination";
 
 export default function Products() {
-  const { items, listStatus, error, totalPages } = useSelector(
+  const { items, listStatus, listError, totalPages } = useSelector(
     (state) => state.products,
   );
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export default function Products() {
         ) : listStatus === "rejected" ? (
           // Failed to fetch data from API
           <div className="flex h-screen items-center justify-center">
-            {error}
+            {listError}
           </div>
         ) : (
           <div className="grid h-fit grid-cols-2 gap-4 p-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">

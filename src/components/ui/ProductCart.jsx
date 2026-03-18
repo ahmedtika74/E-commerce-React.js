@@ -5,6 +5,7 @@ import {
 } from "../../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import { Trash } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function ProductCart({ data }) {
   const dispatch = useDispatch();
@@ -43,7 +44,10 @@ export default function ProductCart({ data }) {
         </div>
         <div
           className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-slate-700 transition-all hover:bg-red-500/20 hover:text-red-500 md:h-8 md:w-8"
-          onClick={() => dispatch(removeItem(data))}
+          onClick={() => {
+            dispatch(removeItem(data));
+            toast.error("Item removed");
+          }}
         >
           <Trash />
         </div>
