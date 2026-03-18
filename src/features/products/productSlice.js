@@ -51,7 +51,6 @@ export const productSlice = createSlice({
       // All Products
       .addCase(fetchAPI.pending, (state) => {
         state.listStatus = "loading";
-        state.items = [];
       })
       .addCase(fetchAPI.fulfilled, (state, action) => {
         state.listStatus = "succeeded";
