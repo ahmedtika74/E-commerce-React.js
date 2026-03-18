@@ -20,8 +20,9 @@ export default function CategoryDetails() {
 
   //   Search filter
   const filteredCategory = useMemo(() => {
-    if (!searchQuery) return category;
-    return category.filter((product) =>
+    const data = Array.isArray(category) ? category : [];
+    if (!searchQuery) return data;
+    return data.filter((product) =>
       product.title.toLowerCase().includes(searchQuery.toLowerCase()),
     );
   }, [category, searchQuery]);
