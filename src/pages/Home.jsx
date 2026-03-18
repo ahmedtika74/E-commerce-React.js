@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { fetchFeatured } from "../features/products/productSlice";
 
 export default function Home() {
-  const { featured } = useSelector((state) => state.products);
+  const { featured, featuredStatus } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -92,18 +92,24 @@ export default function Home() {
         <p className="text-center text-slate-500 md:text-xl">
           Our top picks for the season
         </p>
-        <div className="mt-7 grid grid-cols-2 gap-6 md:mt-20 md:grid-cols-3 lg:grid-cols-4">
-          {!latestModels ? (
-            <div className="flex items-center justify-center">
-              Failed to fetch featured products.
-            </div>
-          ) : (
-            latestModels.map((item) => (
+
+        {featuredStatus === "loading" ? (
+          <div className="flex h-[50vh] w-full items-center justify-center">
+            Loading...
+          </div>
+        ) : featuredStatus === "rejected" ? (
+          <div className="flex h-[50vh] w-full items-center justify-center">
+            Failed to load products. Please refresh.
+          </div>
+        ) : (
+          <div className="mt-7 grid grid-cols-2 gap-6 md:mt-20 md:grid-cols-3 lg:grid-cols-4">
+            {latestModels.map((item) => (
               <ProductCard key={item.id} data={item} />
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
+
       {/* Why Us */}
       <div className="container mx-auto mt-10 p-4 pb-10 md:mt-17">
         <h2 className="mb-2 text-center text-2xl font-bold underline md:mb-5 md:text-4xl">
