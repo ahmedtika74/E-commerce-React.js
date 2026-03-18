@@ -32,6 +32,14 @@ export const fetchCategory = createAsyncThunk(
     return response.data;
   },
 );
+// Category Names
+export const fetchCategoryName = createAsyncThunk(
+  "products/categories",
+  async () => {
+    const response = await axiosInstance.get("/categories");
+    return response.data;
+  },
+);
 
 export const productSlice = createSlice({
   name: "products",
@@ -39,15 +47,16 @@ export const productSlice = createSlice({
     items: [],
     featured: [],
     category: [],
+    categories: [],
     listStatus: "idle",
     featuredStatus: "idle",
     productStatus: "idle",
     categoryStatus: "idle",
+    CategoryNameStatus: "idle",
     error: "",
     totalProducts: 0,
     totalPages: 0,
     currentPage: 1,
-    categories: "",
     currentProduct: {},
   },
   reducers: {},
@@ -105,6 +114,18 @@ export const productSlice = createSlice({
       .addCase(fetchCategory.rejected, (state, action) => {
         state.categoryStatus = "rejected";
         state.error = `failed to fetch, ${action.error.message}`;
+      })
+      // Categories Name
+      .addCase(fetchCategoryName.pending, (state) => {
+        state.CategoryNameStatus = "loading";
+      })
+      .addCase(fetchCategoryName.fulfilled, (state, action) => {
+        state.CategoryNameStatus = "succeeded";
+        state.categories = action.payload.categories;
+      })
+      .addCase(fetchCategoryName.rejected, (state, action) => {
+        state.CategoryNameStatus = "rejected";
+        state.error = action.error.message;
       });
   },
 });
