@@ -17,15 +17,24 @@ export default function Footer() {
               sustainable materials and timeless aesthetics.
             </p>
             <div className="mt-6 flex gap-4">
-              <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all hover:border-indigo-500 hover:text-white">
+              <Link
+                to="#"
+                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all hover:border-indigo-500 hover:text-white"
+              >
                 <Facebook size={20} />
-              </div>
-              <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all hover:border-indigo-500 hover:text-white">
+              </Link>
+              <Link
+                to="#"
+                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all hover:border-indigo-500 hover:text-white"
+              >
                 <Instagram size={20} />
-              </div>
-              <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all hover:border-indigo-500 hover:text-white">
+              </Link>
+              <Link
+                to="#"
+                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all hover:border-indigo-500 hover:text-white"
+              >
                 <Twitter size={20} />
-              </div>
+              </Link>
             </div>
           </div>
 
