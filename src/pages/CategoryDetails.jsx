@@ -41,7 +41,7 @@ export default function CategoryDetails() {
 
   return (
     <div className="container mx-auto flex flex-col items-center justify-center p-6">
-      <h2 className="text-2xl font-bold md:text-4xl">
+      <h2 className="text-3xl font-bold text-white md:text-5xl">
         {categoryName.toUpperCase()} Products
       </h2>
 
