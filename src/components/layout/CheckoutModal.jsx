@@ -12,6 +12,8 @@ export default function CheckoutModal() {
     cvv: "",
   });
 
+  const [error, setError] = useState("");
+
   const dispatch = useDispatch();
 
   const handleName = useCallback((e) => {
@@ -44,9 +46,10 @@ export default function CheckoutModal() {
       expireDate.length < 5 ||
       cvv.length < 3
     ) {
-      alert("Please check your payment details!");
+      setError("Please check your payment details.");
       return;
     }
+    setError("");
     dispatch(confirmPayment());
   };
 
@@ -71,6 +74,7 @@ export default function CheckoutModal() {
           />
 
           <PaymentForm
+            error={error}
             paymentData={paymentData}
             handleName={handleName}
             handleNumber={handleNumber}

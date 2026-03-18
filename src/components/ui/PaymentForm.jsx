@@ -2,6 +2,7 @@ import PaymentInput from "./PaymentInput";
 import ActionButton from "./ActionButton";
 
 export default function PaymentForm({
+  error,
   paymentData,
   handleName,
   handleNumber,
@@ -45,7 +46,11 @@ export default function PaymentForm({
             maxLength={5}
           />
         </div>
-
+        {error && (
+          <p className="mt-4 animate-pulse text-center text-sm font-medium text-red-400">
+            ⚠️ {error}
+          </p>
+        )}
         <div className="mt-2 flex items-center gap-2">
           <ActionButton name="Cancel" onClick={onCancel} />
           <ActionButton name="Pay Now" onClick={onConfirm} />
