@@ -2,21 +2,28 @@ import ActionButton from "../components/ui/ActionButton";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProduct } from "../features/products/productSlice";
+import { fetchProduct, fetchSimilar } from "../features/products/productSlice";
 import { useEffect } from "react";
 import { addItem } from "../features/cart/cartSlice";
+import ProductCard from "../components/ui/ProductCard";
 
 export default function ProductDetails() {
   const dispatch = useDispatch();
   const productId = Number(useParams().id);
-  const { currentProduct } = useSelector((state) => state.products);
+  const { currentProduct, productStatus, similar, similarStatus } = useSelector(
+    (state) => state.products,
+  );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(fetchProduct(productId));
+    dispatch(fetchSimilar(productId));
   }, [dispatch, productId]);
 
-  return !currentProduct ? (
-    <div className="flex h-screen items-center justify-center">Loading...</div>
+  return productStatus === "loading" ? (
+    <div className="flex h-[70vh] items-center justify-center">Loading...</div>
+  ) : productStatus === "rejected" ? (
+    <div>failed to fetch</div>
   ) : (
     <div className="container mx-auto mt-5 px-4 md:mt-10">
       {/* Breadcrumb navigation */}
@@ -79,6 +86,31 @@ export default function ProductDetails() {
             />
           </div>
         </div>
+      </div>
+      {/* Similar Products */}
+      <div className="container mx-auto mt-10 p-4 pb-10 md:mt-17">
+        <h2 className="mb-2 text-center text-2xl font-bold underline md:mb-5 md:text-4xl">
+          Similar Products
+        </h2>
+        <p className="text-center text-slate-500 md:text-xl">
+          Similar products picks for you
+        </p>
+
+        {similarStatus === "loading" ? (
+          <div className="flex h-[50vh] w-full items-center justify-center">
+            Loading...
+          </div>
+        ) : similarStatus === "rejected" ? (
+          <div className="flex h-[50vh] w-full items-center justify-center">
+            Failed to load products. Please refresh.
+          </div>
+        ) : (
+          <div className="mt-7 grid grid-cols-2 gap-6 md:mt-20 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {similar.map((item) => (
+              <ProductCard key={item.id} data={item} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

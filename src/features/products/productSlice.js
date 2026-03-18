@@ -40,6 +40,11 @@ export const fetchCategoryName = createAsyncThunk(
     return response.data;
   },
 );
+// Similar Products
+export const fetchSimilar = createAsyncThunk("products/similar", async (id) => {
+  const response = await axiosInstance.get(`products/similar/${id}`);
+  return response.data;
+});
 
 export const productSlice = createSlice({
   name: "products",
@@ -48,11 +53,13 @@ export const productSlice = createSlice({
     featured: [],
     category: [],
     categories: [],
+    similar: [],
     listStatus: "idle",
     featuredStatus: "idle",
     productStatus: "idle",
     categoryStatus: "idle",
     CategoryNameStatus: "idle",
+    similarStatus: "idle",
     error: "",
     totalProducts: 0,
     totalPages: 0,
@@ -125,6 +132,18 @@ export const productSlice = createSlice({
       })
       .addCase(fetchCategoryName.rejected, (state, action) => {
         state.CategoryNameStatus = "rejected";
+        state.error = action.error.message;
+      })
+      // Similar Products
+      .addCase(fetchSimilar.pending, (state) => {
+        state.similarStatus = "loading";
+      })
+      .addCase(fetchSimilar.fulfilled, (state, action) => {
+        state.similarStatus = "succeeded";
+        state.similar = action.payload.results;
+      })
+      .addCase(fetchSimilar.rejected, (state, action) => {
+        state.similarStatus = "rejected";
         state.error = action.error.message;
       });
   },
