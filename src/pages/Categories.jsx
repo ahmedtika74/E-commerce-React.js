@@ -19,7 +19,9 @@ import {
   LayoutGrid,
 } from "lucide-react";
 export default function Categories() {
-  const { categories } = useSelector((state) => state.products);
+  const { categories, CategoryNameStatus } = useSelector(
+    (state) => state.products,
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -60,29 +62,34 @@ export default function Categories() {
           Find exactly what you need from our wide range of products
         </p>
       </div>
+      {CategoryNameStatus === "loading" ? (
+        <div className="flex h-[70vh] items-center justify-center">
+          Loading Categories...
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {categories.map((category) => (
+            <Link
+              key={category.name}
+              to={`/categories/${category.name}`}
+              onClick={scrollToTop}
+              className="group flex cursor-pointer flex-col items-center justify-center rounded-xl border border-slate-700 bg-slate-800/50 p-6 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500 hover:bg-slate-700 hover:shadow-lg hover:shadow-indigo-500/20"
+            >
+              <span className="mb-4 text-5xl transition-transform duration-300 group-hover:scale-110">
+                {getCategoryIcon(category.name)}
+              </span>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        {categories.map((category) => (
-          <Link
-            key={category.name}
-            to={`/categories/${category.name}`}
-            onClick={scrollToTop}
-            className="group flex cursor-pointer flex-col items-center justify-center rounded-xl border border-slate-700 bg-slate-800/50 p-6 transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500 hover:bg-slate-700 hover:shadow-lg hover:shadow-indigo-500/20"
-          >
-            <span className="mb-4 text-5xl transition-transform duration-300 group-hover:scale-110">
-              {getCategoryIcon(category.name)}
-            </span>
+              <h3 className="text-lg font-bold text-white transition-colors group-hover:text-indigo-400">
+                {category.name}
+              </h3>
 
-            <h3 className="text-lg font-bold text-white transition-colors group-hover:text-indigo-400">
-              {category.name}
-            </h3>
-
-            <span className="mt-2 rounded-full bg-slate-900/50 px-3 py-1 text-xs font-medium text-slate-400">
-              {category.count} Products
-            </span>
-          </Link>
-        ))}
-      </div>
+              <span className="mt-2 rounded-full bg-slate-900/50 px-3 py-1 text-xs font-medium text-slate-400">
+                {category.count} Products
+              </span>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

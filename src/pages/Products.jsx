@@ -6,7 +6,7 @@ import ProductCard from "../components/ui/ProductCard";
 import Pagination from "../components/ui/Pagination";
 
 export default function Products() {
-  const { items, status, error, totalPages } = useSelector(
+  const { items, listStatus, error, totalPages } = useSelector(
     (state) => state.products,
   );
   const dispatch = useDispatch();
@@ -37,12 +37,12 @@ export default function Products() {
           />
         </div>
         {/* Products */}
-        {status === "loading" ? (
+        {listStatus === "loading" ? (
           // Trying to fetch data from API
           <div className="flex h-[70vh] items-center justify-center">
             Loading...
           </div>
-        ) : status === "rejected" ? (
+        ) : listStatus === "rejected" ? (
           // Failed to fetch data from API
           <div className="flex h-screen items-center justify-center">
             {error}

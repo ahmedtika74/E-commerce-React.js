@@ -9,7 +9,7 @@ import Pagination from "../components/ui/Pagination";
 export default function CategoryDetails() {
   const { categoryName } = useParams();
   const dispatch = useDispatch();
-  const { category, status } = useSelector((state) => state.products);
+  const { category, categoryStatus } = useSelector((state) => state.products);
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -55,8 +55,10 @@ export default function CategoryDetails() {
         />
       </div>
 
-      {status === "loading" ? (
-        <div>Loading {categoryName}...</div>
+      {categoryStatus === "loading" ? (
+        <div className="flex h-[70vh] items-center justify-center">
+          Loading {categoryName.toUpperCase()}...
+        </div>
       ) : (
         <>
           <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
