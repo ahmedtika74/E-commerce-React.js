@@ -35,6 +35,13 @@ export default function ProductDetails() {
           Products
         </Link>
         &gt;
+        <Link
+          className="text-slate-500 uppercase transition-all hover:text-white hover:underline"
+          to={`/categories/${currentProduct.category}`}
+        >
+          {currentProduct.category}
+        </Link>
+        &gt;
         <p className="font-medium text-slate-300">{currentProduct.title}</p>
       </div>
       {/* Product Data */}
